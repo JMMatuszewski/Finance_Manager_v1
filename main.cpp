@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    Financial_Manager financial_Manager("xml_files/users.xml", "xml_files/incomes.xml");
+    Financial_Manager financial_Manager("xml_files/users.xml", "xml_files/incomes.xml", "xml_files/expenses.xml");
     char choice;
 
     while(true)
@@ -36,6 +36,9 @@ int main()
         {
             //cout << "Last Id: " << financial_Manager.getLastIncomeId() << endl;
             //system("pause");
+            //financial_Manager.show_Incomes();
+            //financial_Manager.show_Expenses();
+            //system("pause");
             choice = financial_Manager.getFinanceMenuChoice();
 
             switch(choice)
@@ -43,6 +46,13 @@ int main()
             case '1':
                 financial_Manager.addIncome();
                 break;
+            case '2':
+                financial_Manager.addExpense();
+                break;
+            case '7':
+                financial_Manager.userLogout();
+                break;
+
 
             }
         }

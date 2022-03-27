@@ -100,3 +100,108 @@
 	<iostream>
 	"Financial_Manager.h"
 
+1303067212 source:d:\repos\finance_manager_v1\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1303067212 d:\repos\finance_manager_v1\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1648323307 source:d:\repos\finance_manager_v1\minor_methods.cpp
+	"Minor_Methods.h"
+
+1648323321 d:\repos\finance_manager_v1\minor_methods.h
+	<iostream>
+	<time.h>
+
+1647369688 source:d:\repos\finance_manager_v1\user.cpp
+	"User.h"
+
+1646076826 d:\repos\finance_manager_v1\user.h
+	<iostream>
+
+1647638585 source:d:\repos\finance_manager_v1\user_file.cpp
+	"User_File.h"
+
+1648062300 d:\repos\finance_manager_v1\user_file.h
+	<iostream>
+	<vector>
+	"User.h"
+	"XML_File.h"
+	"Markup.h"
+
+1647637213 d:\repos\finance_manager_v1\xml_file.h
+	<iostream>
+
+1647372309 source:d:\repos\finance_manager_v1\xml_file.cpp
+	"XML_File.h"
+
+1648392215 source:d:\repos\finance_manager_v1\amount.cpp
+	"Amount.h"
+
+1648392215 d:\repos\finance_manager_v1\amount.h
+	<iostream>
+
+1648393767 source:d:\repos\finance_manager_v1\incomes_file.cpp
+	"Incomes_File.h"
+
+1648393747 d:\repos\finance_manager_v1\incomes_file.h
+	<iostream>
+	<vector>
+	"Minor_Methods.h"
+	"Amount.h"
+	"XML_File.h"
+	"Markup.h"
+
+1648400790 source:d:\repos\finance_manager_v1\user_manager.cpp
+	"User_Manager.h"
+
+1648400778 d:\repos\finance_manager_v1\user_manager.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Minor_Methods.h"
+	"User_File.h"
+
+1648395130 source:d:\repos\finance_manager_v1\expenses_file.cpp
+	"Expenses_File.h"
+
+1648395130 d:\repos\finance_manager_v1\expenses_file.h
+	<iostream>
+	<vector>
+	"Minor_Methods.h"
+	"Amount.h"
+	"XML_File.h"
+	"Markup.h"
+
+1648395130 source:d:\repos\finance_manager_v1\financial_manager.cpp
+	"Financial_Manager.h"
+
+1648400778 d:\repos\finance_manager_v1\financial_manager.h
+	<iostream>
+	"User_Manager.h"
+	"UserFinances_Manager.h"
+	"Minor_Methods.h"
+
+1648395781 d:\repos\finance_manager_v1\userfinances_manager.h
+	<iostream>
+	<string>
+	"Minor_Methods.h"
+	"Incomes_File.h"
+	"Expenses_File.h"
+	"Amount.h"
+
+1648400778 source:d:\repos\finance_manager_v1\main.cpp
+	<iostream>
+	"Financial_Manager.h"
+
+1648395781 source:d:\repos\finance_manager_v1\userfinances_manager.cpp
+	"UserFinances_Manager.h"
+

@@ -1,6 +1,6 @@
-#include "Income.h"
+#include "Amount.h"
 
-bool Income::setId(int newId)
+bool Amount::setId(int newId)
 {
     if (newId > 0)
     {
@@ -10,7 +10,7 @@ bool Income::setId(int newId)
     return false;
 }
 
-bool Income::setDate(string newDate)
+bool Amount::setDate(string newDate)
 {
     if (newDate != "")
     {
@@ -20,17 +20,17 @@ bool Income::setDate(string newDate)
     return false;
 }
 
-bool Income::setIncomeId(int newIncomeId)
+bool Amount::setAmountId(int newAmountId)
 {
-    if (newIncomeId > 0)
+    if (newAmountId > 0)
     {
-        incomeId = newIncomeId;
+        amountId = newAmountId;
         return true;
     }
     return false;
 }
 
-bool Income::setItem(string newItem)
+bool Amount::setItem(string newItem)
 {
     if (newItem != "")
     {
@@ -40,7 +40,7 @@ bool Income::setItem(string newItem)
     return false;
 }
 
-bool Income::setAmount(double newAmount)
+bool Amount::setAmount(double newAmount)
 {
     if (newAmount > 0)
     {
@@ -50,27 +50,27 @@ bool Income::setAmount(double newAmount)
     return false;
 }
 //////////////////////////////////////////////////////
-int Income::getId()
+int Amount::getId()
 {
     return id;
 }
 
-string Income::getDate()
+string Amount::getDate()
 {
     return date;
 }
 
-int Income::getIncomeId()
+int Amount::getAmountId()
 {
-    return incomeId;
+    return amountId;
 }
 
-string Income::getItem()
+string Amount::getItem()
 {
     return item;
 }
 
-double Income::getAmount()
+double Amount::getAmount()
 {
     return amount;
 }

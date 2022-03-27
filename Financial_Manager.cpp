@@ -22,7 +22,7 @@ void Financial_Manager::user_Login()
 
     if(user_Manager.check_IfUserLogged())
     {
-        userFinances_Manager = new UserFinances_Manager(INCOMES_FILENAME, user_Manager.getLoggedUserId());
+        userFinances_Manager = new UserFinances_Manager(INCOMES_FILENAME, EXPENSES_FILENAME, user_Manager.getLoggedUserId());
     }
 }
 
@@ -53,9 +53,31 @@ void Financial_Manager::addIncome()
     userFinances_Manager -> addIncome();
 }
 
-/*// TMP ///
+void Financial_Manager::addExpense()
+{
+    userFinances_Manager -> addExpense();
+}
+
+void Financial_Manager::userLogout()
+{
+    user_Manager.userLogout();
+    delete userFinances_Manager;
+    userFinances_Manager = NULL;
+}
+/// TMP ///
+void Financial_Manager::show_Incomes()
+{
+    userFinances_Manager -> show_Incomes();
+}
+
+void Financial_Manager::show_Expenses()
+{
+    userFinances_Manager -> show_Expenses();
+}
+
+/*
 int Financial_Manager::getLastIncomeId()
 {
     return userFinances_Manager -> getLastIncomeId();
-}
-*/// TMP ///
+}*/
+/// TMP ///

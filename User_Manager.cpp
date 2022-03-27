@@ -149,3 +149,8 @@ bool User_Manager::check_IfUserLogged()
     else
         return false;
 }
+
+void User_Manager::userLogout()
+{
+    loggedUserId = 0;
+}

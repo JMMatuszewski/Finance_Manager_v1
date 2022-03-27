@@ -1,20 +1,20 @@
-#include "Incomes_File.h"
+#include "Expenses_File.h"
 
-vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
+vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
 {
     CMarkup xml;
     Amount amount;
-    vector<Amount> incomes;
+    vector<Amount> expenses;
     int current_id;
     ////// TMP STATUS //////////
     bool status;
     ///////////////////////////
     xml.Load(getFileName());
     xml.ResetPos();
-    if(xml.FindElem("INCOMES"))
+    if(xml.FindElem("EXPENSES"))
     {
         xml.IntoElem();
-        while(xml.FindElem("INCOME"))
+        while(xml.FindElem("EXPENSE"))
         {
             xml.IntoElem();
             /// GET DATA FROM XML ///
@@ -27,10 +27,10 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
                 xml.FindElem("DATE");
                 status = amount.setDate(xml.GetElemContent());
 
-                xml.FindElem("INCOME_ID");
-                int income_id = atoi(xml.GetElemContent().c_str());
-                status = amount.setAmountId(income_id);
-                lastIncomeId = income_id;
+                xml.FindElem("EXPENSE_ID");
+                int expense_id = atoi(xml.GetElemContent().c_str());
+                status = amount.setAmountId(expense_id);
+                lastExpenseId = expense_id;
 
                 xml.FindElem("ITEM");
                 status = amount.setItem(xml.GetElemContent());
@@ -38,21 +38,21 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
                 xml.FindElem("AMOUNT");
                 status = amount.setAmount(atof(xml.GetElemContent().c_str()));
                 //////////////////////////
-                incomes.push_back(amount);
+                expenses.push_back(amount);
             }
             else
             {
-                xml.FindElem("INCOME_ID");
-                lastIncomeId = atoi(xml.GetElemContent().c_str());
+                xml.FindElem("EXPENSE_ID");
+                lastExpenseId = atoi(xml.GetElemContent().c_str());
             }
             xml.OutOfElem();
             /// EOF: GET DATA FROM XML ///
         }
     }
-    return incomes;
+    return expenses;
 }
 
-int Incomes_File::getLastIncomeId()
+int Expenses_File::getLastExpenseId()
 {
-    return lastIncomeId;
+    return lastExpenseId;
 }

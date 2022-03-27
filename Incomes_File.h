@@ -5,13 +5,11 @@
 #include <vector>
 
 #include "Minor_Methods.h"
-//#include "Incomes_File.h"
-#include "Income.h"
+#include "Amount.h"
 #include "XML_File.h"
 #include "Markup.h"
 
 using namespace std;
-
 
 class Incomes_File : public XML_File
 {
@@ -22,7 +20,7 @@ public:
         lastIncomeId = 0;
     };
     /// PUBLIC METHODS ///
-    vector<Income> loadUserIncome(int loggedUserId);
+    vector<Amount> loadUserIncome(int loggedUserId);
 
     int getLastIncomeId();
 };

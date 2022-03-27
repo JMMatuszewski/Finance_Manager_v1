@@ -34,6 +34,8 @@ public:
     int getLoggedUserId();
     char getFinanceMenuChoice();
     bool check_IfUserLogged();
+    void userLogout();
+
 };
 
 #endif

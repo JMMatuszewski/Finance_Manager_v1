@@ -16,12 +16,13 @@ class Financial_Manager
     UserFinances_Manager *userFinances_Manager;
     ///////////////////////////////
     const string INCOMES_FILENAME;
+    const string EXPENSES_FILENAME;
 
 
 
 public:
-    Financial_Manager(string USERFILENAME, string incomes_FileName)
-    : user_Manager(USERFILENAME), INCOMES_FILENAME(incomes_FileName)
+    Financial_Manager(string USERFILENAME, string incomes_FileName, string expenses_FileName)
+    : user_Manager(USERFILENAME), INCOMES_FILENAME(incomes_FileName), EXPENSES_FILENAME(expenses_FileName)
     {
         userFinances_Manager = NULL;
     };
@@ -41,8 +42,12 @@ public:
     int getLoggedUserId();
     //////////// FINANCES /////////
     void addIncome();
+    void addExpense();
+    void userLogout();
 
     /// TMP ///
+    void show_Incomes();
+    void show_Expenses();
     //int getLastIncomeId();
     /// TMP ///
 
