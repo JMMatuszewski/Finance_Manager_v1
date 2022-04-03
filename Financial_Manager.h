@@ -44,6 +44,9 @@ public:
     void addIncome();
     void addExpense();
     void userLogout();
+    void currentMonth();
+    void previousMonth();
+    void choosePeriod();
 
     /// TMP ///
     void show_Incomes();

@@ -25,7 +25,7 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
                 status = amount.setId(current_id);
 
                 xml.FindElem("DATE");
-                status = amount.setDate(xml.GetElemContent());
+                status = amount.setDate(atoi(xml.GetElemContent().c_str()));
 
                 xml.FindElem("INCOME_ID");
                 int income_id = atoi(xml.GetElemContent().c_str());
@@ -50,6 +50,32 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
         }
     }
     return incomes;
+}
+
+void Incomes_File::writeIncomes(Amount amount, int LOGGED_USER_ID)
+{
+    CMarkup xml_in;
+    xml_in.Load(getFileName());
+    xml_in.ResetPos();
+    if(!xml_in.FindElem("INCOMES"))
+    {
+        //cout << "empty file\n";
+        xml_in.AddElem("INCOMES");
+    }
+    else
+    {
+        //cout << "file exist\n";
+    }
+    xml_in.IntoElem();
+    xml_in.AddElem("INCOME");
+    xml_in.IntoElem();
+    xml_in.AddElem("USER_ID", LOGGED_USER_ID);
+    xml_in.AddElem("DATE", amount.getDate());
+    xml_in.AddElem("INCOME_ID", amount.getAmountId());
+    xml_in.AddElem("ITEM", amount.getItem());
+    xml_in.AddElem("AMOUNT", Minor_Methods::toStringWithPrecision(amount.getAmount()));
+
+    xml_in.Save(getFileName());
 }
 
 int Incomes_File::getLastIncomeId()

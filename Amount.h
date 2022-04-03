@@ -8,19 +8,19 @@ using namespace std;
 class Amount
 {
     int id;
-    string date;
+    int date;
     int amountId;
     string item;
     double amount;
 public:
     bool setId(int newId);
-    bool setDate(string newDate);
+    bool setDate(int newDate);
     bool setAmountId(int newAmountId);
     bool setItem(string newItem);
     bool setAmount(double newAmount);
 
     int getId();
-    string getDate();
+    int getDate();
     int getAmountId();
     string getItem();
     double getAmount();

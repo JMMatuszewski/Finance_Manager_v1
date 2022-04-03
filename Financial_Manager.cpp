@@ -64,7 +64,7 @@ void Financial_Manager::userLogout()
     delete userFinances_Manager;
     userFinances_Manager = NULL;
 }
-/// TMP ///
+
 void Financial_Manager::show_Incomes()
 {
     userFinances_Manager -> show_Incomes();
@@ -75,6 +75,20 @@ void Financial_Manager::show_Expenses()
     userFinances_Manager -> show_Expenses();
 }
 
+void Financial_Manager::currentMonth()
+{
+    userFinances_Manager -> currentMonth();
+}
+
+void Financial_Manager::previousMonth()
+{
+    userFinances_Manager -> previousMonth();
+}
+
+void Financial_Manager::choosePeriod()
+{
+    userFinances_Manager -> choosePeriod();
+}
 /*
 int Financial_Manager::getLastIncomeId()
 {

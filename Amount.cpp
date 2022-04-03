@@ -10,9 +10,9 @@ bool Amount::setId(int newId)
     return false;
 }
 
-bool Amount::setDate(string newDate)
+bool Amount::setDate(int newDate)
 {
-    if (newDate != "")
+    if (newDate > 0)
     {
         date = newDate;
         return true;
@@ -55,7 +55,7 @@ int Amount::getId()
     return id;
 }
 
-string Amount::getDate()
+int Amount::getDate()
 {
     return date;
 }

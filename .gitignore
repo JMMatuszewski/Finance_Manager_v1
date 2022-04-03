@@ -1,3 +1,7 @@
+bin/
+obj/
+DateParts.cpp
+DateParts.h
 # Prerequisites
 *.d
 

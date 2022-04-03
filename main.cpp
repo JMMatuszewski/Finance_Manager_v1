@@ -49,11 +49,17 @@ int main()
             case '2':
                 financial_Manager.addExpense();
                 break;
+            case '3':
+                financial_Manager.currentMonth();
+                break;
+            case '4':
+                financial_Manager.previousMonth();
+                break;
             case '7':
                 financial_Manager.userLogout();
                 break;
-
-
+            case '5':
+                financial_Manager.choosePeriod();
             }
         }
     }

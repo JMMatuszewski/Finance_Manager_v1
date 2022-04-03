@@ -34,11 +34,12 @@
 		</Compiler>
 		<Unit filename="Amount.cpp" />
 		<Unit filename="Amount.h" />
+		<Unit filename="DateParts.cpp" />
+		<Unit filename="DateParts.h" />
 		<Unit filename="Expenses_File.cpp" />
 		<Unit filename="Expenses_File.h" />
 		<Unit filename="Financial_Manager.cpp" />
 		<Unit filename="Financial_Manager.h" />
-		<Unit filename="Income.h" />
 		<Unit filename="Incomes_File.cpp" />
 		<Unit filename="Incomes_File.h" />
 		<Unit filename="Markup.cpp" />

@@ -3,11 +3,14 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <vector>
 
 #include "Minor_Methods.h"
 #include "Incomes_File.h"
 #include "Expenses_File.h"
 #include "Amount.h"
+//#include "DateParts.h"
 
 using namespace std;
 
@@ -22,6 +25,12 @@ class UserFinances_Manager
     /// Private Methods ///
     bool get_NewIncome(Amount* pIncome);
     bool get_NewExpense(Amount* pExpense);
+    void showBilans(int startDate, int endDate, int option);
+    double calcMonthSum(vector<Amount> vectorName, int startDate, int endDate);
+    double calcPreciseSum(vector<Amount> vectorName, int startDate, int endDate);
+    int chooseDate();
+    //void showBilansParts(vector<Amount> bilans);
+
     ///////////////////////
 
 public:
@@ -34,12 +43,16 @@ public:
     ////////////// METHODS ///////////////
     void addIncome();
     void addExpense();
+    void currentMonth();
+    void previousMonth();
+    void choosePeriod();
 
     /// TMP ///
     void show_Incomes();
     void show_Expenses();
-    /// TMP ///
     //int getLastIncomeId();
+    /// TMP ///
+
 };
 
 #endif

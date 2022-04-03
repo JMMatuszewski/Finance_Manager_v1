@@ -114,12 +114,15 @@
 	<string>
 	<afx.h>
 
-1648323307 source:d:\repos\finance_manager_v1\minor_methods.cpp
+1648989168 source:d:\repos\finance_manager_v1\minor_methods.cpp
 	"Minor_Methods.h"
 
-1648323321 d:\repos\finance_manager_v1\minor_methods.h
+1648989263 d:\repos\finance_manager_v1\minor_methods.h
 	<iostream>
 	<time.h>
+	<string>
+	<sstream>
+	<iomanip>
 
 1647369688 source:d:\repos\finance_manager_v1\user.cpp
 	"User.h"
@@ -143,16 +146,16 @@
 1647372309 source:d:\repos\finance_manager_v1\xml_file.cpp
 	"XML_File.h"
 
-1648392215 source:d:\repos\finance_manager_v1\amount.cpp
+1648660909 source:d:\repos\finance_manager_v1\amount.cpp
 	"Amount.h"
 
-1648392215 d:\repos\finance_manager_v1\amount.h
+1648660959 d:\repos\finance_manager_v1\amount.h
 	<iostream>
 
-1648393767 source:d:\repos\finance_manager_v1\incomes_file.cpp
+1648989957 source:d:\repos\finance_manager_v1\incomes_file.cpp
 	"Incomes_File.h"
 
-1648393747 d:\repos\finance_manager_v1\incomes_file.h
+1648989168 d:\repos\finance_manager_v1\incomes_file.h
 	<iostream>
 	<vector>
 	"Minor_Methods.h"
@@ -160,20 +163,20 @@
 	"XML_File.h"
 	"Markup.h"
 
-1648400790 source:d:\repos\finance_manager_v1\user_manager.cpp
+1648492636 source:d:\repos\finance_manager_v1\user_manager.cpp
 	"User_Manager.h"
 
-1648400778 d:\repos\finance_manager_v1\user_manager.h
+1648740060 d:\repos\finance_manager_v1\user_manager.h
 	<iostream>
 	<vector>
 	"User.h"
 	"Minor_Methods.h"
 	"User_File.h"
 
-1648395130 source:d:\repos\finance_manager_v1\expenses_file.cpp
+1648989858 source:d:\repos\finance_manager_v1\expenses_file.cpp
 	"Expenses_File.h"
 
-1648395130 d:\repos\finance_manager_v1\expenses_file.h
+1648989846 d:\repos\finance_manager_v1\expenses_file.h
 	<iostream>
 	<vector>
 	"Minor_Methods.h"
@@ -181,27 +184,35 @@
 	"XML_File.h"
 	"Markup.h"
 
-1648395130 source:d:\repos\finance_manager_v1\financial_manager.cpp
+1648909811 source:d:\repos\finance_manager_v1\financial_manager.cpp
 	"Financial_Manager.h"
 
-1648400778 d:\repos\finance_manager_v1\financial_manager.h
+1648909811 d:\repos\finance_manager_v1\financial_manager.h
 	<iostream>
 	"User_Manager.h"
 	"UserFinances_Manager.h"
 	"Minor_Methods.h"
 
-1648395781 d:\repos\finance_manager_v1\userfinances_manager.h
+1648990109 d:\repos\finance_manager_v1\userfinances_manager.h
 	<iostream>
 	<string>
+	<iomanip>
+	<vector>
 	"Minor_Methods.h"
 	"Incomes_File.h"
 	"Expenses_File.h"
 	"Amount.h"
 
-1648400778 source:d:\repos\finance_manager_v1\main.cpp
+1648909811 source:d:\repos\finance_manager_v1\main.cpp
 	<iostream>
 	"Financial_Manager.h"
 
-1648395781 source:d:\repos\finance_manager_v1\userfinances_manager.cpp
+1648990009 source:d:\repos\finance_manager_v1\userfinances_manager.cpp
 	"UserFinances_Manager.h"
+
+1648491584 d:\repos\finance_manager_v1\dateparts.h
+	<iostream>
+
+1648661083 source:d:\repos\finance_manager_v1\dateparts.cpp
+	"DateParts.h"
 

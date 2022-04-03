@@ -10,7 +10,7 @@ char User_Manager::getFinanceMenuChoice()
     cout << "1. Dodaj przychod" << endl;
     cout << "2. Dodaj wydatek" << endl;
     cout << "3. Bilans z biezacego miesiaca" << endl;
-    cout << "4. Bilans z poprzedniego miesi¹ca" << endl;
+    cout << "4. Bilans z poprzedniego miesiaca" << endl;
     cout << "5. Bilans z wybranego okresu" << endl;
     cout << "6. Zmien haslo" << endl;
     cout << "---------------------------" << endl;

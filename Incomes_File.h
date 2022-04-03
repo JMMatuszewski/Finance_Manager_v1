@@ -21,6 +21,7 @@ public:
     };
     /// PUBLIC METHODS ///
     vector<Amount> loadUserIncome(int loggedUserId);
+    void writeIncomes(Amount amount,int LOGGED_USER_ID);
 
     int getLastIncomeId();
 };

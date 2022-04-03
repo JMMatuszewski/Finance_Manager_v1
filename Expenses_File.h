@@ -21,6 +21,7 @@ public:
     };
     /// PUBLIC METHODS ///
     vector<Amount> loadUserExpense(int loggedUserId);
+    void writeExpenses(Amount amount,int LOGGED_USER_ID);
 
     int getLastExpenseId();
 };
