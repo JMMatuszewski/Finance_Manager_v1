@@ -8,11 +8,12 @@ void UserFinances_Manager::addIncome()
     if (status)
     {
         incomes.push_back(amount);
+        sort(incomes.begin(), incomes.end());
         incomes_File.writeIncomes(amount,LOGGED_USER_ID);
     }
     else
     {
-        cout << "ERROR occured during adding new Item: " << status << endl;
+        cout << "ERROR occured during adding new Income: " << status << endl;
         system("pause");
     }
 }
@@ -20,6 +21,7 @@ void UserFinances_Manager::addIncome()
 bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
 {
     bool status;
+    int attempts = 3;
     system("cls");
 
     status = pIncome -> setId(LOGGED_USER_ID);
@@ -34,16 +36,60 @@ bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
     if (status){}
     else return status;
 
-    cout << "Podaj Towar:" << endl;
+    cout << "Podaj Item:" << endl;
     status = pIncome -> setItem(Minor_Methods::minor_ReadLine());
     if(status){}
     else return status;
 
     cout << "Podaj Kwote:" << endl;
-    if(pIncome -> setAmount(stod(Minor_Methods::minor_ReadLine()))){}
+    string strAmount = Minor_Methods::minor_ReadLine();
+    replace(strAmount.begin(),strAmount.end(),',','.');
+    if(pIncome -> setAmount(stod(strAmount))){}
     else return status;
 
-    return status;
+    cout << "1. Current date." << endl;
+    cout << "2. Custom date." << endl;
+    int option = Minor_Methods::minor_ReadChar();
+    while(true)
+    {
+        if (option == '1')
+        {
+            status = pIncome -> setDate(Minor_Methods::getCurDate());
+            if(status){return status;}
+            else
+            {
+                cout << "ERROR: during getting current date." << endl;
+                return status;
+            }
+        }
+        else if (attempts == 0)
+        {
+            cout << "ERROR: no attempts left." << endl;
+            return status;// = 0;
+        }
+        else if (option == '2')
+        {
+            status = pIncome -> setDate(chooseDate());
+            if(status){return status;}
+            else
+            {
+                //cout << "ERROR: during getting custom date." << endl;
+                attempts--;
+                cout << "Attempts left: " << attempts << endl;
+                cout << endl;
+                //return status;
+            }
+        }
+        else
+        {
+            cout << "ERROR: wrong option." << endl;
+            attempts--;
+            cout << "Attempts left: " << attempts << endl;
+            cout << endl;
+        }
+    }
+
+    //return status;
 }
 //////////////////////////////////////////
 void UserFinances_Manager::addExpense()
@@ -54,6 +100,7 @@ void UserFinances_Manager::addExpense()
     if (status)
     {
         expenses.push_back(amount);
+        sort(expenses.begin(), expenses.end());
         expenses_File.writeExpenses(amount,LOGGED_USER_ID);
     }
     else
@@ -66,6 +113,7 @@ void UserFinances_Manager::addExpense()
 bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
 {
     bool status;
+    int attempts = 3;
     system("cls");
 
     status = pExpense -> setId(LOGGED_USER_ID);
@@ -80,16 +128,62 @@ bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
     if (status){}
     else return status;
 
-    cout << "Podaj Towar:" << endl;
+    cout << "Podaj Item:" << endl;
     status = pExpense -> setItem(Minor_Methods::minor_ReadLine());
     if(status){}
     else return status;
 
     cout << "Podaj Kwote:" << endl;
-    if(pExpense -> setAmount(stod(Minor_Methods::minor_ReadLine()))){}
+    string strAmount = Minor_Methods::minor_ReadLine();
+    if(status = Minor_Methods::checkIfNumber(strAmount)){}
     else return status;
 
-    return status;
+    replace(strAmount.begin(),strAmount.end(),',','.');
+    if(pExpense -> setAmount(stod(strAmount))){}
+    else return status;
+
+    cout << "1. Current date." << endl;
+    cout << "2. Custom date." << endl;
+    int option = Minor_Methods::minor_ReadChar();
+    while(true)
+    {
+        if (option == '1')
+        {
+            status = pExpense -> setDate(Minor_Methods::getCurDate());
+            if(status){return status;}
+            else
+            {
+                cout << "ERROR: during getting current date." << endl;
+                return status;
+            }
+        }
+        else if (attempts == 0)
+        {
+            cout << "ERROR: no attempts left." << endl;
+            return status;// = 0;
+        }
+        else if (option == '2')
+        {
+            status = pExpense -> setDate(chooseDate());
+            if(status){return status;}
+            else
+            {
+                //cout << "ERROR: during getting custom date." << endl;
+                attempts--;
+                cout << "Attempts left: " << attempts << endl;
+                cout << endl;
+                //return status;
+            }
+        }
+        else
+        {
+            cout << "ERROR: wrong option." << endl;
+            attempts--;
+            cout << "Attempts left: " << attempts << endl;
+            cout << endl;
+        }
+    }
+    //return status;
 }
 
 /// TMP ///
@@ -105,6 +199,7 @@ void UserFinances_Manager::show_Incomes()
         cout << incomes[i].getAmount() << endl;
         cout << endl;
     }
+    system("pause");
 }
 
 void UserFinances_Manager::show_Expenses()
@@ -118,6 +213,7 @@ void UserFinances_Manager::show_Expenses()
         cout << expenses[i].getAmount() << endl;
         cout << endl;
     }
+    system("pause");
 }
 /*
 void UserFinances_Manager::showBilansParts(vector<Amount> bilans)
@@ -138,9 +234,9 @@ void UserFinances_Manager::showBilansParts(vector<Amount> bilans)
 void UserFinances_Manager::currentMonth()
 {
     int date = Minor_Methods::getCurDate();
-    cout << "date: " << date << endl;
-    Minor_Methods::printDate(date);
-    cout << "extract start: " << Minor_Methods::extractMonth(date) << endl;
+    //cout << "date: " << date << endl;
+    //Minor_Methods::printDate(date);
+    //cout << "extract start: " << Minor_Methods::extractMonth(date) << endl;
     showBilans(Minor_Methods::extractMonth(date), Minor_Methods::extractMonth(date),1);
 }
 
@@ -150,10 +246,13 @@ void UserFinances_Manager::showBilans(int startDate, int endDate, int option)
 {
     if (option == 1)
     {
-        cout << "opcja 1\n";
-        cout << "start: " << startDate << endl;
-        cout << "end: " << endDate << endl;
+        //cout << "opcja 1\n";
+        //cout << "start: " << startDate << endl;
+        //cout << "end: " << endDate << endl;
+        system("cls");
+        cout << ">>> Your incomes <<<" << endl;
         double incomesSum = calcMonthSum(incomes, startDate, endDate);
+        cout << ">>> Your expenses <<<" << endl;
         double expensesSum = calcMonthSum(expenses, startDate, endDate);
 
         //system("cls");
@@ -164,10 +263,12 @@ void UserFinances_Manager::showBilans(int startDate, int endDate, int option)
     }
     else if(option == 2)
     {
+        cout << ">>> Your incomes <<<" << endl;
         double incomesSum = calcPreciseSum(incomes, startDate, endDate);
+        cout << ">>> Your expenses <<<" << endl;
         double expensesSum = calcPreciseSum(expenses, startDate, endDate);
 
-        system("cls");
+        //system("cls");
         cout << "Incomes sum: " << incomesSum << endl;
         cout << "Expenses sum: " << expensesSum << endl;
         cout << "Bilans: " << incomesSum - expensesSum << endl;
@@ -180,11 +281,16 @@ double UserFinances_Manager::calcMonthSum(vector<Amount> vectorName, int startDa
 {
     //vector<Amount> bilans;
     double sum = 0;
+
     for (vector<Amount>::iterator itr = vectorName.begin() ; itr != vectorName.end() ; itr++)
     {
         if ((Minor_Methods::extractMonth(itr->getDate()) <= endDate) && (Minor_Methods::extractMonth(itr->getDate()) >= startDate))
         {
             sum += itr->getAmount();
+            cout << "---------------------" << endl;
+            cout << "Item: " << itr->getItem() << endl;
+            cout << "Amount: " << itr->getAmount() << endl;
+            cout << endl;
             //bilans.push_back(itr);
         }
     }
@@ -200,6 +306,10 @@ double UserFinances_Manager::calcPreciseSum(vector<Amount> vectorName, int start
         if ((itr->getDate() <= endDate) && (itr->getDate() >= startDate))
         {
             sum += itr->getAmount();
+            cout << "---------------------" << endl;
+            cout << "Item: " << itr->getItem() << endl;
+            cout << "Amount: " << itr->getAmount() << endl;
+            cout << endl;
         }
     }
     return sum;
@@ -218,38 +328,36 @@ void UserFinances_Manager::choosePeriod()
 {
     system("cls");
 
-    cout << "Daty prosze podac w formacie rrrr-mm-dd" << endl;
-    cout << "> OD <" << endl;
+    cout << "> FROM <" << endl;
     int startDate = chooseDate();
     if (!startDate)
         return;
-    cout << "> DO <" << endl;
+    cout << "> TO <" << endl;
     int endDate = chooseDate();
     if (!endDate)
         return;
-
+    else if(startDate > endDate)
+    {
+        cout << "ERROR: Last date is earlier than starting date." << endl;
+        system("pause");
+        return;
+    }
     showBilans(startDate,endDate,2);
-
-    //cout << "Podaj poczatek okresu: " << endl;
-    //int startDate = atoi((Minor_Methods::minor_ReadLine()).c_str());
-    //cout << "Podaj koniec okresu: " << endl;
-    //int endDate = atoi((Minor_Methods::minor_ReadLine()).c_str());
-
-    //cout << "start: " << startDate << endl;
-    //cout << "end: " << endDate << endl;
 }
 
 int UserFinances_Manager::chooseDate()
 {
+    cout << "Please pass date in rrrr-mm-dd format:" << endl;
     string date = Minor_Methods::minor_ReadLine();
 
     if (!(Minor_Methods::checkDate(date)))
     {
-        cout << "ERROR: Podano bledna date, prosze trzymac sie formatu oraz dzisiejszej lub przeszlej daty." << endl;
+        cout << "ERROR: pls hold to the right format and past or current date." << endl;
+        system("pause");
         return 0;
     }
 
-    return atoi(date.c_str());
+    return Minor_Methods::mergeDate(date);
 }
 /// TMP ///
 /*

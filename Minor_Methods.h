@@ -13,7 +13,7 @@ using namespace std;
 // Class with all the additional methods
 class Minor_Methods
 {
-    static bool checkIfNumber(string& num);
+
     //static int extractMonth(string date);
     static int extractYear(int date);
     static int extractDay(int date);
@@ -29,6 +29,7 @@ public:
     static int extractMonth(int date);
     static void printDate(int date);
     static string toStringWithPrecision(double fAmount);
+    static bool checkIfNumber(string& num);
     /// PRV? ///
     //static int extractMonth(int date);
 

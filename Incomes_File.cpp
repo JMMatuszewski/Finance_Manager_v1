@@ -6,6 +6,7 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
     Amount amount;
     vector<Amount> incomes;
     int current_id;
+    int income_id;
     ////// TMP STATUS //////////
     bool status;
     ///////////////////////////
@@ -28,9 +29,12 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
                 status = amount.setDate(atoi(xml.GetElemContent().c_str()));
 
                 xml.FindElem("INCOME_ID");
-                int income_id = atoi(xml.GetElemContent().c_str());
+                income_id = atoi(xml.GetElemContent().c_str());
                 status = amount.setAmountId(income_id);
-                lastIncomeId = income_id;
+                if (lastIncomeId < income_id)
+                    lastIncomeId = income_id;
+                //cout << "lastIncomeId: " << lastIncomeId << endl;
+                //system("pause");
 
                 xml.FindElem("ITEM");
                 status = amount.setItem(xml.GetElemContent());
@@ -43,12 +47,15 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
             else
             {
                 xml.FindElem("INCOME_ID");
-                lastIncomeId = atoi(xml.GetElemContent().c_str());
+                income_id = atoi(xml.GetElemContent().c_str());
+                if (lastIncomeId < income_id)
+                    lastIncomeId = income_id;
             }
             xml.OutOfElem();
             /// EOF: GET DATA FROM XML ///
         }
     }
+    sort(incomes.begin(), incomes.end());
     return incomes;
 }
 
@@ -74,11 +81,18 @@ void Incomes_File::writeIncomes(Amount amount, int LOGGED_USER_ID)
     xml_in.AddElem("INCOME_ID", amount.getAmountId());
     xml_in.AddElem("ITEM", amount.getItem());
     xml_in.AddElem("AMOUNT", Minor_Methods::toStringWithPrecision(amount.getAmount()));
-
+    lastIncomeId++;
     xml_in.Save(getFileName());
 }
 
 int Incomes_File::getLastIncomeId()
 {
+    //cout << "LastEIncomeId to return: " << lastIncomeId << endl;
+    //system("pause");
     return lastIncomeId;
 }
+/*
+void Incomes_File::setLastIncomeId(int newLastIncomeId)
+{
+    lastIncomeId = newLastIncomeId;
+}*/

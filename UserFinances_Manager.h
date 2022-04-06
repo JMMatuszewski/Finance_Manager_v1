@@ -5,6 +5,7 @@
 #include <string>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
 
 #include "Minor_Methods.h"
 #include "Incomes_File.h"

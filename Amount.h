@@ -2,6 +2,7 @@
 #define AMOUNT_H
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -24,6 +25,8 @@ public:
     int getAmountId();
     string getItem();
     double getAmount();
+
+    bool operator<( Amount const &d) const { return date < d.date; }
 };
 
 #endif

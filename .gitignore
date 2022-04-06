@@ -2,6 +2,13 @@ bin/
 obj/
 DateParts.cpp
 DateParts.h
+expenses.xml
+expenses.xml.bak
+incomes.xml
+incomes.xml.bak
+users.xml
+users.xml.bak
+xml_files
 # Prerequisites
 *.d
 

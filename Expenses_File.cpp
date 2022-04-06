@@ -6,6 +6,7 @@ vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
     Amount amount;
     vector<Amount> expenses;
     int current_id;
+    int expense_id ;
     ////// TMP STATUS //////////
     bool status;
     ///////////////////////////
@@ -28,9 +29,12 @@ vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
                 status = amount.setDate(atoi(xml.GetElemContent().c_str()));
 
                 xml.FindElem("EXPENSE_ID");
-                int expense_id = atoi(xml.GetElemContent().c_str());
+                expense_id = atoi(xml.GetElemContent().c_str());
                 status = amount.setAmountId(expense_id);
-                lastExpenseId = expense_id;
+                if (lastExpenseId < expense_id)
+                    lastExpenseId = expense_id;
+                //cout << "lastExpenseId: " << lastExpenseId << endl;
+                //system("pause");
 
                 xml.FindElem("ITEM");
                 status = amount.setItem(xml.GetElemContent());
@@ -44,11 +48,14 @@ vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
             {
                 xml.FindElem("EXPENSE_ID");
                 lastExpenseId = atoi(xml.GetElemContent().c_str());
+                if (lastExpenseId < expense_id)
+                    lastExpenseId = expense_id;
             }
             xml.OutOfElem();
             /// EOF: GET DATA FROM XML ///
         }
     }
+    sort(expenses.begin(), expenses.end());
     return expenses;
 }
 
@@ -71,14 +78,16 @@ void Expenses_File::writeExpenses(Amount amount, int LOGGED_USER_ID)
     xml_in.IntoElem();
     xml_in.AddElem("USER_ID", LOGGED_USER_ID);
     xml_in.AddElem("DATE", amount.getDate());
-    xml_in.AddElem("INCOME_ID", amount.getAmountId());
+    xml_in.AddElem("EXPENSE_ID", amount.getAmountId());
     xml_in.AddElem("ITEM", amount.getItem());
     xml_in.AddElem("AMOUNT", Minor_Methods::toStringWithPrecision(amount.getAmount()));
-
+    lastExpenseId++;
     xml_in.Save(getFileName());
 }
 
 int Expenses_File::getLastExpenseId()
 {
+    //cout << "LastExpenseId to return: " << lastExpenseId << endl;
+    //system("pause");
     return lastExpenseId;
 }

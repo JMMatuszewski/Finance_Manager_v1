@@ -22,7 +22,7 @@ char Minor_Methods::minor_ReadChar()
             chrInput = strInput[0];
             break;
         }
-        cout << "Blad na wejsciu" << endl;
+        cout << "ERROR: wrong char." << endl;
     }
     return chrInput;
 }
@@ -60,7 +60,6 @@ int Minor_Methods::mergeDate(string date)
         else
         {
             mergedDate += date[position];
-            cout << "progress merge: " << date[position] << endl;
         }
     }
 

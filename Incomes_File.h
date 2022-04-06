@@ -23,6 +23,7 @@ public:
     vector<Amount> loadUserIncome(int loggedUserId);
     void writeIncomes(Amount amount,int LOGGED_USER_ID);
 
+    //void setLastIncomeId(int newLastIncomeId);
     int getLastIncomeId();
 };
 
