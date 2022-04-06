@@ -1,5 +1,6 @@
 #include "Incomes_File.h"
 
+/// Method to load encomes of logged user ///
 vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
 {
     CMarkup xml;
@@ -33,8 +34,6 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
                 status = amount.setAmountId(income_id);
                 if (lastIncomeId < income_id)
                     lastIncomeId = income_id;
-                //cout << "lastIncomeId: " << lastIncomeId << endl;
-                //system("pause");
 
                 xml.FindElem("ITEM");
                 status = amount.setItem(xml.GetElemContent());
@@ -59,6 +58,7 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
     return incomes;
 }
 
+/// Method to write new expenses of logged user ///
 void Incomes_File::writeIncomes(Amount amount, int LOGGED_USER_ID)
 {
     CMarkup xml_in;
@@ -66,12 +66,7 @@ void Incomes_File::writeIncomes(Amount amount, int LOGGED_USER_ID)
     xml_in.ResetPos();
     if(!xml_in.FindElem("INCOMES"))
     {
-        //cout << "empty file\n";
         xml_in.AddElem("INCOMES");
-    }
-    else
-    {
-        //cout << "file exist\n";
     }
     xml_in.IntoElem();
     xml_in.AddElem("INCOME");
@@ -85,10 +80,9 @@ void Incomes_File::writeIncomes(Amount amount, int LOGGED_USER_ID)
     xml_in.Save(getFileName());
 }
 
+/// Method to extract Id of the last income ///
 int Incomes_File::getLastIncomeId()
 {
-    //cout << "LastEIncomeId to return: " << lastIncomeId << endl;
-    //system("pause");
     return lastIncomeId;
 }
 /*

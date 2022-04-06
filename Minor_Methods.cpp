@@ -1,6 +1,6 @@
 #include "Minor_Methods.h"
 
-// Method to read the line from input
+/// Method to read the line from input ///
 string Minor_Methods::minor_ReadLine()
 {
     string line="";
@@ -8,6 +8,7 @@ string Minor_Methods::minor_ReadLine()
     return line;
 }
 
+/// Method to read the character from input ///
 char Minor_Methods::minor_ReadChar()
 {
     char chrInput = {0};
@@ -27,10 +28,11 @@ char Minor_Methods::minor_ReadChar()
     return chrInput;
 }
 
+/// Method to get current date ///
 int Minor_Methods::getCurDate()
 {
     /////////// TIME VARIABLES ////////////
-    time_t rawtime;// = time(0);
+    time_t rawtime;
     struct tm * timeinfo;
     char date_char[80];
     string date;
@@ -38,17 +40,13 @@ int Minor_Methods::getCurDate()
     /////////// TIME OPERATIONS ///////////
     time (&rawtime);
     timeinfo = localtime(&rawtime);
-    //cout << timeinfo << endl;
     strftime (date_char,80,"%Y%m%d",timeinfo);
-    //cout << date_char << endl;
     date = date_char;
     intDate = atoi(date.c_str());
-    //cout << date << endl;
-    //mergedDate = mergeDate(date);
-    //cout << "cur date: " << mergedDate << endl;
     return intDate;
 }
 
+/// Method to delete "-" from date ///
 int Minor_Methods::mergeDate(string date)
 {
     string mergedDate;
@@ -67,6 +65,7 @@ int Minor_Methods::mergeDate(string date)
     return intMergedDate;
 }
 
+/// Method to check if date is correct ///
 bool Minor_Methods::checkDate(string date)
 {
     bool status = false;
@@ -88,58 +87,55 @@ bool Minor_Methods::checkDate(string date)
         return false;
 
     int intMergedDate = atoi(mergedDate.c_str());
-    /// SPRAWDZIC MIESIAC I DNI ///
     if(!checkMonth(extractMonth(intMergedDate)))
         return false;
 
     if( !(getDays(extractMonth(intMergedDate), extractYear(intMergedDate)) >= extractDay(intMergedDate)) )
         return false;
-    /// SPRAWDZIC MIESIAC I DNI ///
 
     if (!(getCurDate() >= atoi(mergedDate.c_str())))
         return false;
 
     return true;
-
-
-    //if(checkIfNumber(mergedDate))
-        //return status = true;
 }
 
-// troche eksperyment ale dziala, zwraca 0/1
+/// Method if string has only numbers ///
+/// before converting it to int.      ///
 bool Minor_Methods::checkIfNumber(string& num)
 {
     string::iterator itr = num.begin();
     while (itr != num.end() && isdigit(*itr)) ++itr;
     return !num.empty() && itr == num.end();
 }
-//PRV
+
+/// Method to extract year from date ///
 int Minor_Methods::extractYear(int date)
 {
     string strDate = to_string(date);
     return atoi((strDate.substr(0,4)).c_str());
 }
 
+/// Method to extract month from date ///
 int Minor_Methods::extractMonth(int date)
 {
     string strDate = to_string(date);
     return atoi((strDate.substr(4,2)).c_str());
 }
 
-//PRV
+/// Method to extract day from date ///
 int Minor_Methods::extractDay(int date)
 {
     string strDate = to_string(date);
     return atoi((strDate.substr(6,2)).c_str());
 }
-//PRV
+/// Method to check if year is correct ///
 bool Minor_Methods::checkYear(int year)
 {
     if ( (year >= 2000) && (year <= extractYear(getCurDate())))
         return true;
     else return false;
 }
-//PRV
+/// Method to check if month is correct ///
 bool Minor_Methods::checkMonth(int month)
 {
     if ( (month >= 0) && (month <= 12) )    /// WAZNE /// ZASTISIWAC "if (expr) return true; return false;! Just write return expr;"
@@ -147,8 +143,8 @@ bool Minor_Methods::checkMonth(int month)
     else return false;
 }
 
-// Function returning number of days of the given month.
-// Will help in operations on counting days from one date to another.
+/// Function returning number of days of the given month. ///
+/// Will help in operations on counting days from one date to another. ///
 int Minor_Methods::getDays(int m, int y)
 {
     if (m==2)
@@ -182,14 +178,15 @@ int Minor_Methods::getDays(int m, int y)
     }
 }
 
+/// Method dedicated to printing Date in rrrr-dd-mm format ///
 void Minor_Methods::printDate(int date)
 {
     string strDate = to_string(date);
     cout << "Date: " << strDate.substr(0,4) << "-" << strDate.substr(4,2) << "-" << strDate.substr(6,2) << endl;
 }
 
-// Function to convert float data to string,
-// with certain precision - in this case 2 numbers.
+/// Function to convert float data to string, ///
+/// with certain precision - in this case 2 numbers. ///
 string Minor_Methods::toStringWithPrecision(double fAmount)
 {
     string strAmount;
@@ -198,41 +195,3 @@ string Minor_Methods::toStringWithPrecision(double fAmount)
     strAmount = stream.str();
     return strAmount;
 }
-
-
-// Function to convert from string (Loaded from xml)
-// to class year,month,day, for easier operations on date later.
-/*
-DateParts Minor_Methods::getDateParts(string date)
-{
-    DateParts dateparts;
-    string datepart = "";
-    int part=0;
-    for (int position = 0; position < date.length(); position++)
-    {
-        if ((date[position] == '-') || (position+1 == date.length()))
-        {
-            part++;
-            switch(part)
-            {
-            case 1:
-                dateparts.year = atoi(datepart.c_str());
-                break;
-            case 2:
-                dateparts.month = atoi(datepart.c_str());
-                break;
-            case 3:
-                datepart += date[position];
-                dateparts.day = atoi(datepart.c_str());
-                break;
-            }
-            datepart = "";
-        }
-        else
-        {
-            datepart += date[position];
-        }
-    }
-    return dateparts;
-}
-*/

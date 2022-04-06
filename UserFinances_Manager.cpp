@@ -1,5 +1,6 @@
 #include "UserFinances_Manager.h"
 
+/// Method to add new income ///
 void UserFinances_Manager::addIncome()
 {
     Amount amount;
@@ -18,6 +19,7 @@ void UserFinances_Manager::addIncome()
     }
 }
 
+/// Method to get data about new income ///
 bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
 {
     bool status;
@@ -88,10 +90,9 @@ bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
             cout << endl;
         }
     }
-
-    //return status;
 }
-//////////////////////////////////////////
+
+/// Method to add new expense ///
 void UserFinances_Manager::addExpense()
 {
     Amount amount;
@@ -110,6 +111,7 @@ void UserFinances_Manager::addExpense()
     }
 }
 
+/// Method to get data about new expense ///
 bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
 {
     bool status;
@@ -183,11 +185,9 @@ bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
             cout << endl;
         }
     }
-    //return status;
 }
 
 /// TMP ///
-
 void UserFinances_Manager::show_Incomes()
 {
     for (int i=0; i<incomes.size();i++)
@@ -215,33 +215,19 @@ void UserFinances_Manager::show_Expenses()
     }
     system("pause");
 }
-/*
-void UserFinances_Manager::showBilansParts(vector<Amount> bilans)
-{
-    for (int i=0; i<bilans.size();i++)
-    {
-        cout << "////////////////////////" << endl;
-        cout << bilans[i].getId() << endl;
-        cout << bilans[i].getDate() << endl;
-        cout << bilans[i].getAmountId() << endl;
-        cout << bilans[i].getItem() << endl;
-        cout << bilans[i].getAmount() << endl;
-        cout << "////////////////////////" << endl;
-        cout << endl;
-    }
-}
-*/
+/// TMP ///
+
+/// Method to handle all the operations ///
+/// to show bilans from current month   ///
 void UserFinances_Manager::currentMonth()
 {
     int date = Minor_Methods::getCurDate();
-    //cout << "date: " << date << endl;
-    //Minor_Methods::printDate(date);
-    //cout << "extract start: " << Minor_Methods::extractMonth(date) << endl;
     showBilans(Minor_Methods::extractMonth(date), Minor_Methods::extractMonth(date),1);
 }
 
-// option = 1 | month
-// option = 2 | full
+/// Method to show bilans ///
+/// option = 1 | month
+/// option = 2 | full date
 void UserFinances_Manager::showBilans(int startDate, int endDate, int option)
 {
     if (option == 1)
@@ -277,6 +263,7 @@ void UserFinances_Manager::showBilans(int startDate, int endDate, int option)
 
 }
 
+/// Method to calculate bilans from few months. ///
 double UserFinances_Manager::calcMonthSum(vector<Amount> vectorName, int startDate, int endDate)
 {
     //vector<Amount> bilans;
@@ -298,6 +285,8 @@ double UserFinances_Manager::calcMonthSum(vector<Amount> vectorName, int startDa
     return sum;
 }
 
+/// Method to calculate precise bilans ///
+/// in certain period.                 ///
 double UserFinances_Manager::calcPreciseSum(vector<Amount> vectorName, int startDate, int endDate)
 {
     double sum = 0;
@@ -315,6 +304,8 @@ double UserFinances_Manager::calcPreciseSum(vector<Amount> vectorName, int start
     return sum;
 }
 
+/// Method to extract month earlier ///
+/// than the present one.           ///
 void UserFinances_Manager::previousMonth()
 {
     int date = Minor_Methods::getCurDate();
@@ -324,6 +315,8 @@ void UserFinances_Manager::previousMonth()
     showBilans(month, month, 1);
 }
 
+/// Method to choose perion in which ///
+/// will be calculated bilans.       ///
 void UserFinances_Manager::choosePeriod()
 {
     system("cls");
@@ -345,6 +338,7 @@ void UserFinances_Manager::choosePeriod()
     showBilans(startDate,endDate,2);
 }
 
+/// Method to get date from user. ///
 int UserFinances_Manager::chooseDate()
 {
     cout << "Please pass date in rrrr-mm-dd format:" << endl;

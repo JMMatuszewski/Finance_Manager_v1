@@ -1,5 +1,6 @@
 #include "User_Manager.h"
 
+/// Method that plays the role of GUI ///
 char User_Manager::getFinanceMenuChoice()
 {
     char choice;
@@ -22,6 +23,7 @@ char User_Manager::getFinanceMenuChoice()
     return choice;
 }
 
+/// Method to login as certain user ///
 void User_Manager::user_Login()
 {
     string login = "";
@@ -62,6 +64,7 @@ void User_Manager::user_Login()
     return;
 }
 
+/// Method to register new user ///
 void User_Manager::user_Register()
 {
     User user;
@@ -76,6 +79,8 @@ void User_Manager::user_Register()
 
 }
 
+/// Method to get information about ///
+/// new user from user input.       ///
 bool User_Manager::get_NewUser(User * pUser)
 {
     //User user;
@@ -106,6 +111,7 @@ bool User_Manager::get_NewUser(User * pUser)
     return true;
 }
 
+/// Method to check if user already exists ///
 bool User_Manager::check_Login(User *pUser)
 {
     for (vector<User>::iterator itr = users.begin(); itr != users.end() ; itr++)
@@ -116,6 +122,7 @@ bool User_Manager::check_Login(User *pUser)
     return true;
 }
 
+/// Method to show all the accessible users ///
 void User_Manager::show_Users()
 {
     for (int i=0; i<users.size();i++)
@@ -129,6 +136,7 @@ void User_Manager::show_Users()
     }
 }
 
+/// Method to extract id of the last accessible user ///
 int User_Manager::get_LastId()
 {
     if (users.empty() == true)
@@ -137,11 +145,13 @@ int User_Manager::get_LastId()
         return users.back().getId() + 1;
 }
 
+/// Method to extract id of logged user ///
 int User_Manager::getLoggedUserId()
 {
     return loggedUserId;
 }
 
+/// Method to check if there is logged any user ///
 bool User_Manager::check_IfUserLogged()
 {
     if (loggedUserId > 0)
@@ -150,6 +160,7 @@ bool User_Manager::check_IfUserLogged()
         return false;
 }
 
+/// Method to logout user ///
 void User_Manager::userLogout()
 {
     loggedUserId = 0;

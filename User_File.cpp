@@ -1,11 +1,11 @@
 #include "User_File.h"
 
+/// Method to load accessible users from xml file ///
 vector<User> User_File::loadUsersFromFile()
 {
     CMarkup xml;
     User user;
     vector<User> users;
-    //string sid;
 
     xml.Load(getFileName());
     xml.ResetPos();
@@ -15,7 +15,7 @@ vector<User> User_File::loadUsersFromFile()
         while(xml.FindElem("USER"))
         {
             xml.IntoElem();
-            // GET DATA FROM XML //
+            /// GET DATA FROM XML ///
             xml.FindElem("LOGIN");
             user.setLogin(xml.GetElemContent());
 
@@ -23,7 +23,6 @@ vector<User> User_File::loadUsersFromFile()
             user.setPass(xml.GetElemContent());
 
             xml.FindElem("ID");
-            //sid = xml.GetElemContent();
             user.setId(atoi(xml.GetElemContent().c_str()));
 
             xml.FindElem("NAME");
@@ -39,6 +38,7 @@ vector<User> User_File::loadUsersFromFile()
     return users;
 }
 
+/// Method to add new user to file ///
 void User_File::add_UserToFile(User user)
 {
     CMarkup xml;

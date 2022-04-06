@@ -1,21 +1,24 @@
 #include "Financial_Manager.h"
 
+/// Method that plays a role of GUI ///
 char Financial_Manager::getMainMenuChoice()
 {
     char choice;
     system("cls");
-    cout << ">>> Menadzer prywatnych finansow <<<" << endl;
+    cout << ">>> Private Finances <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "1. Logowanie" << endl;
-    cout << "2. Rejestracja" << endl;
-    cout << "9. Koniec programu" << endl;
+    cout << "1. Login" << endl;
+    cout << "2. Register" << endl;
+    cout << "9. End of Work" << endl;
     cout << "---------------------------" << endl;
-    cout << "Twoj wybor: ";
+    cout << "Choice: ";
     choice = Minor_Methods::minor_ReadChar();
 
     return choice;
 }
 
+/// Method to login a user ///
+/// Created object to work on the data. ///
 void Financial_Manager::user_Login()
 {
     user_Manager.user_Login();
@@ -30,6 +33,7 @@ void Financial_Manager::show_Users()
 {
     user_Manager.show_Users();
 }
+
 
 void Financial_Manager::user_Register()
 {
@@ -89,6 +93,7 @@ void Financial_Manager::choosePeriod()
 {
     userFinances_Manager -> choosePeriod();
 }
+/// TMP ///
 /*
 int Financial_Manager::getLastIncomeId()
 {
