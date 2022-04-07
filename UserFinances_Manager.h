@@ -30,7 +30,6 @@ class UserFinances_Manager
     double calcMonthSum(vector<Amount> vectorName, int startDate, int endDate);
     double calcPreciseSum(vector<Amount> vectorName, int startDate, int endDate);
     int chooseDate();
-    //void showBilansParts(vector<Amount> bilans);
 
     ///////////////////////
 

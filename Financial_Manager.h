@@ -47,6 +47,7 @@ public:
     void currentMonth();
     void previousMonth();
     void choosePeriod();
+    void changePass();
 
     /// TMP ///
     void show_Incomes();

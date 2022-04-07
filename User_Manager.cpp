@@ -160,6 +160,25 @@ bool User_Manager::check_IfUserLogged()
         return false;
 }
 
+void User_Manager::changePass()
+{
+    string newPass = "";
+    cout << "Print new password: ";
+    newPass = Minor_Methods::minor_ReadLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getId() == loggedUserId)
+        {
+            itr -> setPass(newPass);
+            cout << "Password changed." << endl;
+            system("pause");
+            user_File.editUserPass(loggedUserId, newPass);
+            break;
+        }
+    }
+}
+
 /// Method to logout user ///
 void User_Manager::userLogout()
 {

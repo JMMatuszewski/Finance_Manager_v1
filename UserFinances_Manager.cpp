@@ -353,6 +353,7 @@ int UserFinances_Manager::chooseDate()
 
     return Minor_Methods::mergeDate(date);
 }
+
 /// TMP ///
 /*
 int UserFinances_Manager::getLastIncomeId()

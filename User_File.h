@@ -17,6 +17,7 @@ public:
     User_File(string userFileName) : XML_File(userFileName){};
     vector<User> loadUsersFromFile();
     void add_UserToFile(User user);
+    void editUserPass(int loggedUserId, string newPass);
 
     //////////////////////////////////////
     //vector<User> loadUserFinances();

@@ -64,3 +64,32 @@ void User_File::add_UserToFile(User user)
 
 	xml.Save( getFileName() );
 }
+
+void User_File::editUserPass(int loggedUserId, string newPass)
+{
+    CMarkup xml;
+    int current_id;
+
+    xml.Load(getFileName());
+    xml.ResetPos();
+    if(xml.FindElem("USERS"))
+    {
+        xml.IntoElem();
+        while(xml.FindElem("USER"))
+        {
+            xml.IntoElem();
+            xml.FindElem("ID");
+            current_id = atoi(xml.GetElemContent().c_str());
+            if (loggedUserId == current_id)
+            {
+                //xml.FindElem("LOGIN");
+                //xml.FindPrevElem();
+                //xml.ResetChildPos();
+                xml.RemoveElem();
+                xml.AddElem( "PASS", newPass);
+                xml.Save( getFileName() );
+                break;
+            }
+        }
+    }
+}

@@ -52,11 +52,15 @@ int main()
             case '4':
                 financial_Manager.previousMonth();
                 break;
+            case '5':
+                financial_Manager.choosePeriod();
+                break;
+            case '6':
+                financial_Manager.changePass();
+                break;
             case '7':
                 financial_Manager.userLogout();
                 break;
-            case '5':
-                financial_Manager.choosePeriod();
             }
         }
     }

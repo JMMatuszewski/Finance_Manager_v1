@@ -34,7 +34,6 @@ void Financial_Manager::show_Users()
     user_Manager.show_Users();
 }
 
-
 void Financial_Manager::user_Register()
 {
     user_Manager.user_Register();
@@ -92,6 +91,11 @@ void Financial_Manager::previousMonth()
 void Financial_Manager::choosePeriod()
 {
     userFinances_Manager -> choosePeriod();
+}
+
+void Financial_Manager::changePass()
+{
+    user_Manager.changePass();
 }
 /// TMP ///
 /*
