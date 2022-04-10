@@ -1,7 +1,7 @@
-#include "Minor_Methods.h"
+#include "MinorMethods.h"
 
 /// Method to read the line from input ///
-string Minor_Methods::minor_ReadLine()
+string MinorMethods::minorReadLine()
 {
     string line="";
     getline(cin,line);
@@ -9,7 +9,7 @@ string Minor_Methods::minor_ReadLine()
 }
 
 /// Method to read the character from input ///
-char Minor_Methods::minor_ReadChar()
+char MinorMethods::minorReadChar()
 {
     char chrInput = {0};
     string strInput;
@@ -30,25 +30,25 @@ char Minor_Methods::minor_ReadChar()
 }
 
 /// Method to get current date ///
-int Minor_Methods::getCurDate()
+int MinorMethods::getCurDate()
 {
     /////////// TIME VARIABLES ////////////
     time_t rawtime;
     struct tm * timeinfo;
-    char date_char[80];
+    char dateChar[80];
     string date;
     int intDate;
     /////////// TIME OPERATIONS ///////////
     time (&rawtime);
     timeinfo = localtime(&rawtime);
-    strftime (date_char,80,"%Y%m%d",timeinfo);
-    date = date_char;
+    strftime (dateChar,80,"%Y%m%d",timeinfo);
+    date = dateChar;
     intDate = atoi(date.c_str());
     return intDate;
 }
 
 /// Method to delete "-" from date ///
-int Minor_Methods::mergeDate(string date)
+int MinorMethods::mergeDate(string date)
 {
     string mergedDate;
     int intMergedDate;
@@ -67,7 +67,7 @@ int Minor_Methods::mergeDate(string date)
 }
 
 /// Method to check if date is correct ///
-bool Minor_Methods::checkDate(string date)
+bool MinorMethods::checkDate(string date)
 {
     bool status = false;
     string mergedDate;
@@ -103,7 +103,7 @@ bool Minor_Methods::checkDate(string date)
 
 /// Method if string has only numbers ///
 /// before converting it to int.      ///
-bool Minor_Methods::checkIfNumber(string& num)
+bool MinorMethods::checkIfNumber(string& num)
 {
     bool point = false;
     string::iterator itr;
@@ -120,34 +120,34 @@ bool Minor_Methods::checkIfNumber(string& num)
 }
 
 /// Method to extract year from date ///
-int Minor_Methods::extractYear(int date)
+int MinorMethods::extractYear(int date)
 {
     string strDate = to_string(date);
     return atoi((strDate.substr(0,4)).c_str());
 }
 
 /// Method to extract month from date ///
-int Minor_Methods::extractMonth(int date)
+int MinorMethods::extractMonth(int date)
 {
     string strDate = to_string(date);
     return atoi((strDate.substr(4,2)).c_str());
 }
 
 /// Method to extract day from date ///
-int Minor_Methods::extractDay(int date)
+int MinorMethods::extractDay(int date)
 {
     string strDate = to_string(date);
     return atoi((strDate.substr(6,2)).c_str());
 }
 /// Method to check if year is correct ///
-bool Minor_Methods::checkYear(int year)
+bool MinorMethods::checkYear(int year)
 {
     if ( (year >= 2000) && (year <= extractYear(getCurDate())))
         return true;
     else return false;
 }
 /// Method to check if month is correct ///
-bool Minor_Methods::checkMonth(int month)
+bool MinorMethods::checkMonth(int month)
 {
     if ( (month >= 1) && (month <= 12) )    /// WAZNE /// ZASTISIWAC "if (expr) return true; return false;! Just write return expr;"
         return true;
@@ -156,7 +156,7 @@ bool Minor_Methods::checkMonth(int month)
 
 /// Function returning number of days of the given month. ///
 /// Will help in operations on counting days from one date to another. ///
-int Minor_Methods::getDays(int m, int y)
+int MinorMethods::getDays(int m, int y)
 {
     if (m==2)
     {
@@ -192,7 +192,7 @@ int Minor_Methods::getDays(int m, int y)
 }
 
 /// Method dedicated to printing Date in rrrr-dd-mm format ///
-void Minor_Methods::printDate(int date)
+void MinorMethods::printDate(int date)
 {
     string strDate = to_string(date);
     cout << "Date: " << strDate.substr(0,4) << "-" << strDate.substr(4,2) << "-" << strDate.substr(6,2) << endl;
@@ -200,7 +200,7 @@ void Minor_Methods::printDate(int date)
 
 /// Function to convert float data to string, ///
 /// with certain precision - in this case 2 numbers. ///
-string Minor_Methods::toStringWithPrecision(double fAmount)
+string MinorMethods::toStringWithPrecision(double fAmount)
 {
     string strAmount;
     stringstream stream;

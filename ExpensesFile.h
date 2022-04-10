@@ -4,18 +4,18 @@
 #include <iostream>
 #include <vector>
 
-#include "Minor_Methods.h"
+#include "MinorMethods.h"
 #include "Amount.h"
-#include "XML_File.h"
+#include "XMLFile.h"
 #include "Markup.h"
 
 using namespace std;
 
-class Expenses_File : public XML_File
+class ExpensesFile : public XMLFile
 {
     int lastExpenseId;
 public:
-    Expenses_File(string expenses_FileName) : XML_File(expenses_FileName)
+    ExpensesFile(string expensesFileName) : XMLFile(expensesFileName)
     {
         lastExpenseId = 0;
     };

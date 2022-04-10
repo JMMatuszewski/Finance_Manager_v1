@@ -1,16 +1,16 @@
-#include "UserFinances_Manager.h"
+#include "UserFinancesManager.h"
 
 /// Method to add new income ///
-void UserFinances_Manager::addIncome()
+void UserFinancesManager::addIncome()
 {
     Amount amount;
 
-    bool status = get_NewIncome(&amount);
+    bool status = getNewIncome(&amount);
     if (status)
     {
         incomes.push_back(amount);
         sort(incomes.begin(), incomes.end());
-        incomes_File.writeIncomes(amount,LOGGED_USER_ID);
+        incomesFile.writeIncomes(amount,LOGGED_USER_ID);
     }
     else
     {
@@ -20,7 +20,7 @@ void UserFinances_Manager::addIncome()
 }
 
 /// Method to get data about new income ///
-bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
+bool UserFinancesManager::getNewIncome(Amount* pIncome)
 {
     bool status;
     int attempts = 3;
@@ -30,35 +30,35 @@ bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
     if(status){}
     else return status;
 
-    status = pIncome -> setDate(Minor_Methods::getCurDate());
+    status = pIncome -> setDate(MinorMethods::getCurDate());
     if(status){}
     else return status;
 
-    status = pIncome -> setAmountId(incomes_File.getLastIncomeId() + 1);
+    status = pIncome -> setAmountId(incomesFile.getLastIncomeId() + 1);
     if (status){}
     else return status;
 
     cout << "Podaj Item:" << endl;
-    status = pIncome -> setItem(Minor_Methods::minor_ReadLine());
+    status = pIncome -> setItem(MinorMethods::minorReadLine());
     if(status){}
     else return status;
 
     cout << "Podaj Kwote:" << endl;
-    string strAmount = Minor_Methods::minor_ReadLine();
+    string strAmount = MinorMethods::minorReadLine();
     replace(strAmount.begin(),strAmount.end(),',','.');
-    if(status = Minor_Methods::checkIfNumber(strAmount)){}
+    if(status = MinorMethods::checkIfNumber(strAmount)){}
     else return status;
     if(pIncome -> setAmount(stod(strAmount))){}
     else return status;
 
     cout << "1. Current date." << endl;
     cout << "2. Custom date." << endl;
-    int option = Minor_Methods::minor_ReadChar();
+    int option = MinorMethods::minorReadChar();
     while(true)
     {
         if (option == '1')
         {
-            status = pIncome -> setDate(Minor_Methods::getCurDate());
+            status = pIncome -> setDate(MinorMethods::getCurDate());
             if(status){return status;}
             else
             {
@@ -69,7 +69,7 @@ bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
         else if (attempts == 0)
         {
             cout << "ERROR: no attempts left." << endl;
-            return status;// = 0;
+            return status;
         }
         else if (option == '2')
         {
@@ -95,16 +95,16 @@ bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
 }
 
 /// Method to add new expense ///
-void UserFinances_Manager::addExpense()
+void UserFinancesManager::addExpense()
 {
     Amount amount;
 
-    bool status = get_NewExpense(&amount);
+    bool status = getNewExpense(&amount);
     if (status)
     {
         expenses.push_back(amount);
         sort(expenses.begin(), expenses.end());
-        expenses_File.writeExpenses(amount,LOGGED_USER_ID);
+        expensesFile.writeExpenses(amount,LOGGED_USER_ID);
     }
     else
     {
@@ -114,7 +114,7 @@ void UserFinances_Manager::addExpense()
 }
 
 /// Method to get data about new expense ///
-bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
+bool UserFinancesManager::getNewExpense(Amount* pExpense)
 {
     bool status;
     int attempts = 3;
@@ -124,35 +124,35 @@ bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
     if(status){}
     else return status;
 
-    status = pExpense -> setDate(Minor_Methods::getCurDate());
+    status = pExpense -> setDate(MinorMethods::getCurDate());
     if(status){}
     else return status;
 
-    status = pExpense -> setAmountId(expenses_File.getLastExpenseId() + 1);
+    status = pExpense -> setAmountId(expensesFile.getLastExpenseId() + 1);
     if (status){}
     else return status;
 
     cout << "Podaj Item:" << endl;
-    status = pExpense -> setItem(Minor_Methods::minor_ReadLine());
+    status = pExpense -> setItem(MinorMethods::minorReadLine());
     if(status){}
     else return status;
 
     cout << "Podaj Kwote:" << endl;
-    string strAmount = Minor_Methods::minor_ReadLine();
+    string strAmount = MinorMethods::minorReadLine();
     replace(strAmount.begin(),strAmount.end(),',','.');
-    if(status = Minor_Methods::checkIfNumber(strAmount)){}
+    if(status = MinorMethods::checkIfNumber(strAmount)){}
     else return status;
     if(pExpense -> setAmount(stod(strAmount))){}
     else return status;
 
     cout << "1. Current date." << endl;
     cout << "2. Custom date." << endl;
-    int option = Minor_Methods::minor_ReadChar();
+    int option = MinorMethods::minorReadChar();
     while(true)
     {
         if (option == '1')
         {
-            status = pExpense -> setDate(Minor_Methods::getCurDate());
+            status = pExpense -> setDate(MinorMethods::getCurDate());
             if(status){return status;}
             else
             {
@@ -163,7 +163,7 @@ bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
         else if (attempts == 0)
         {
             cout << "ERROR: no attempts left." << endl;
-            return status;// = 0;
+            return status;
         }
         else if (option == '2')
         {
@@ -189,7 +189,7 @@ bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
 }
 
 /// TMP ///
-void UserFinances_Manager::show_Incomes()
+void UserFinancesManager::showIncomes()
 {
     for (int i=0; i<incomes.size();i++)
     {
@@ -203,7 +203,7 @@ void UserFinances_Manager::show_Incomes()
     system("pause");
 }
 
-void UserFinances_Manager::show_Expenses()
+void UserFinancesManager::showExpenses()
 {
     for (int i=0; i<expenses.size();i++)
     {
@@ -220,22 +220,19 @@ void UserFinances_Manager::show_Expenses()
 
 /// Method to handle all the operations ///
 /// to show bilans from current month   ///
-void UserFinances_Manager::currentMonth()
+void UserFinancesManager::currentMonth()
 {
-    int date = Minor_Methods::getCurDate();
-    showBilans(Minor_Methods::extractMonth(date), Minor_Methods::extractMonth(date),1);
+    int date = MinorMethods::getCurDate();
+    showBilans(MinorMethods::extractMonth(date), MinorMethods::extractMonth(date),1);
 }
 
 /// Method to show bilans ///
 /// option = 1 | month
 /// option = 2 | full date
-void UserFinances_Manager::showBilans(int startDate, int endDate, int option)
+void UserFinancesManager::showBilans(int startDate, int endDate, int option)
 {
     if (option == 1)
     {
-        //cout << "opcja 1\n";
-        //cout << "start: " << startDate << endl;
-        //cout << "end: " << endDate << endl;
         system("cls");
         cout << ">>> Your incomes <<<" << endl;
         double incomesSum = calcMonthSum(incomes, startDate, endDate);
@@ -265,31 +262,28 @@ void UserFinances_Manager::showBilans(int startDate, int endDate, int option)
 }
 
 /// Method to calculate bilans from few months. ///
-double UserFinances_Manager::calcMonthSum(vector<Amount> vectorName, int startDate, int endDate)
+double UserFinancesManager::calcMonthSum(vector<Amount> vectorName, int startDate, int endDate)
 {
-    //vector<Amount> bilans;
     double sum = 0;
 
     for (vector<Amount>::iterator itr = vectorName.begin() ; itr != vectorName.end() ; itr++)
     {
-        if ((Minor_Methods::extractMonth(itr->getDate()) <= endDate) && (Minor_Methods::extractMonth(itr->getDate()) >= startDate))
+        if ((MinorMethods::extractMonth(itr->getDate()) <= endDate) && (MinorMethods::extractMonth(itr->getDate()) >= startDate))
         {
             sum += itr->getAmount();
             cout << "---------------------" << endl;
-            cout << "Date:"; Minor_Methods::printDate(itr->getDate());
+            cout << "Date:"; MinorMethods::printDate(itr->getDate());
             cout << "Item: " << itr->getItem() << endl;
             cout << "Amount: " << itr->getAmount() << endl;
             cout << endl;
-            //bilans.push_back(itr);
         }
     }
-    //showBilansParts(bilans);
     return sum;
 }
 
 /// Method to calculate precise bilans ///
 /// in certain period.                 ///
-double UserFinances_Manager::calcPreciseSum(vector<Amount> vectorName, int startDate, int endDate)
+double UserFinancesManager::calcPreciseSum(vector<Amount> vectorName, int startDate, int endDate)
 {
     double sum = 0;
     for (vector<Amount>::iterator itr = vectorName.begin() ; itr != vectorName.end() ; itr++)
@@ -308,10 +302,10 @@ double UserFinances_Manager::calcPreciseSum(vector<Amount> vectorName, int start
 
 /// Method to extract month earlier ///
 /// than the present one.           ///
-void UserFinances_Manager::previousMonth()
+void UserFinancesManager::previousMonth()
 {
-    int date = Minor_Methods::getCurDate();
-    int month = Minor_Methods::extractMonth(date) - 1;
+    int date = MinorMethods::getCurDate();
+    int month = MinorMethods::extractMonth(date) - 1;
     if (month == 0)
         month = 12;
     showBilans(month, month, 1);
@@ -319,7 +313,7 @@ void UserFinances_Manager::previousMonth()
 
 /// Method to choose perion in which ///
 /// will be calculated bilans.       ///
-void UserFinances_Manager::choosePeriod()
+void UserFinancesManager::choosePeriod()
 {
     system("cls");
 
@@ -341,19 +335,19 @@ void UserFinances_Manager::choosePeriod()
 }
 
 /// Method to get date from user. ///
-int UserFinances_Manager::chooseDate()
+int UserFinancesManager::chooseDate()
 {
     cout << "Please pass date in rrrr-mm-dd format:" << endl;
-    string date = Minor_Methods::minor_ReadLine();
+    string date = MinorMethods::minorReadLine();
 
-    if (!(Minor_Methods::checkDate(date)))
+    if (!(MinorMethods::checkDate(date)))
     {
         cout << "ERROR: pls hold to the right format and past or current date." << endl;
         system("pause");
         return 0;
     }
 
-    return Minor_Methods::mergeDate(date);
+    return MinorMethods::mergeDate(date);
 }
 
 /// TMP ///

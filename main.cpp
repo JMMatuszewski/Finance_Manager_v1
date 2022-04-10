@@ -1,26 +1,26 @@
 #include <iostream>
 
-#include "Financial_Manager.h"
+#include "FinancialManager.h"
 
 using namespace std;
 
 int main()
 {
-    Financial_Manager financial_Manager("users.xml", "incomes.xml", "expenses.xml");
+    FinancialManager financialManager("users.xml", "incomes.xml", "expenses.xml");
     char choice;
 
     while(true)
     {
-        if(financial_Manager.getLoggedUserId() == 0)
+        if(financialManager.getLoggedUserId() == 0)
         {
-            choice = financial_Manager.getMainMenuChoice();
+            choice = financialManager.getMainMenuChoice();
             switch(choice)
             {
             case '1':
-                financial_Manager.user_Login();
+                financialManager.userLogin();
                 break;
             case '2':
-                financial_Manager.user_Register();
+                financialManager.userRegister();
                 break;
             case '9':
                 exit(0);
@@ -36,30 +36,30 @@ int main()
             //financial_Manager.show_Incomes();
             //financial_Manager.show_Expenses();
             //system("pause");
-            choice = financial_Manager.getFinanceMenuChoice();
+            choice = financialManager.getFinanceMenuChoice();
 
             switch(choice)
             {
             case '1':
-                financial_Manager.addIncome();
+                financialManager.addIncome();
                 break;
             case '2':
-                financial_Manager.addExpense();
+                financialManager.addExpense();
                 break;
             case '3':
-                financial_Manager.currentMonth();
+                financialManager.currentMonth();
                 break;
             case '4':
-                financial_Manager.previousMonth();
+                financialManager.previousMonth();
                 break;
             case '5':
-                financial_Manager.choosePeriod();
+                financialManager.choosePeriod();
                 break;
             case '6':
-                financial_Manager.changePass();
+                financialManager.changePass();
                 break;
             case '7':
-                financial_Manager.userLogout();
+                financialManager.userLogout();
                 break;
             }
         }

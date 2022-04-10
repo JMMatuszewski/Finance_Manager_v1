@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class XML_File
+class XMLFile
 {
     const string FILE_NAME;
 
 public:
-    XML_File(string fileName) : FILE_NAME(fileName){}
+    XMLFile(string fileName) : FILE_NAME(fileName){}
 
     string getFileName();
 };

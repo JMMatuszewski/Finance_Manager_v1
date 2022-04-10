@@ -1,5 +1,6 @@
 bin/
 obj/
+old/
 DateParts.cpp
 DateParts.h
 expenses.xml

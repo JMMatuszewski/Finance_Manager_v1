@@ -1,13 +1,13 @@
-#include "Expenses_File.h"
+#include "ExpensesFile.h"
 
 /// Method to load expenses of logged user ///
-vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
+vector<Amount> ExpensesFile::loadUserExpense(int loggedUserId)
 {
     CMarkup xml;
     Amount amount;
     vector<Amount> expenses;
-    int current_id;
-    int expense_id ;
+    int currentId;
+    int expenseId ;
     ////// TMP STATUS //////////
     bool status;
     ///////////////////////////
@@ -21,19 +21,19 @@ vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
             xml.IntoElem();
             /// GET DATA FROM XML ///
             xml.FindElem("USER_ID");
-            current_id = atoi(xml.GetElemContent().c_str());
-            if (loggedUserId == current_id)
+            currentId = atoi(xml.GetElemContent().c_str());
+            if (loggedUserId == currentId)
             {
-                status = amount.setId(current_id);
+                status = amount.setId(currentId);
 
                 xml.FindElem("DATE");
                 status = amount.setDate(atoi(xml.GetElemContent().c_str()));
 
                 xml.FindElem("EXPENSE_ID");
-                expense_id = atoi(xml.GetElemContent().c_str());
-                status = amount.setAmountId(expense_id);
-                if (lastExpenseId < expense_id)
-                    lastExpenseId = expense_id;
+                expenseId = atoi(xml.GetElemContent().c_str());
+                status = amount.setAmountId(expenseId);
+                if (lastExpenseId < expenseId)
+                    lastExpenseId = expenseId;
 
                 xml.FindElem("ITEM");
                 status = amount.setItem(xml.GetElemContent());
@@ -47,8 +47,8 @@ vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
             {
                 xml.FindElem("EXPENSE_ID");
                 lastExpenseId = atoi(xml.GetElemContent().c_str());
-                if (lastExpenseId < expense_id)
-                    lastExpenseId = expense_id;
+                if (lastExpenseId < expenseId)
+                    lastExpenseId = expenseId;
             }
             xml.OutOfElem();
             /// EOF: GET DATA FROM XML ///
@@ -59,29 +59,29 @@ vector<Amount> Expenses_File::loadUserExpense(int loggedUserId)
 }
 
 /// Method to write new expenses of logged user ///
-void Expenses_File::writeExpenses(Amount amount, int LOGGED_USER_ID)
+void ExpensesFile::writeExpenses(Amount amount, int LOGGED_USER_ID)
 {
-    CMarkup xml_in;
-    xml_in.Load(getFileName());
-    xml_in.ResetPos();
-    if(!xml_in.FindElem("EXPENSES"))
+    CMarkup xml;
+    xml.Load(getFileName());
+    xml.ResetPos();
+    if(!xml.FindElem("EXPENSES"))
     {
-        xml_in.AddElem("EXPENSES");
+        xml.AddElem("EXPENSES");
     }
-    xml_in.IntoElem();
-    xml_in.AddElem("EXPENSE");
-    xml_in.IntoElem();
-    xml_in.AddElem("USER_ID", LOGGED_USER_ID);
-    xml_in.AddElem("DATE", amount.getDate());
-    xml_in.AddElem("EXPENSE_ID", amount.getAmountId());
-    xml_in.AddElem("ITEM", amount.getItem());
-    xml_in.AddElem("AMOUNT", Minor_Methods::toStringWithPrecision(amount.getAmount()));
+    xml.IntoElem();
+    xml.AddElem("EXPENSE");
+    xml.IntoElem();
+    xml.AddElem("USER_ID", LOGGED_USER_ID);
+    xml.AddElem("DATE", amount.getDate());
+    xml.AddElem("EXPENSE_ID", amount.getAmountId());
+    xml.AddElem("ITEM", amount.getItem());
+    xml.AddElem("AMOUNT", MinorMethods::toStringWithPrecision(amount.getAmount()));
     lastExpenseId++;
-    xml_in.Save(getFileName());
+    xml.Save(getFileName());
 }
 
 /// Method to extract Id of the last expense ///
-int Expenses_File::getLastExpenseId()
+int ExpensesFile::getLastExpenseId()
 {
     return lastExpenseId;
 }

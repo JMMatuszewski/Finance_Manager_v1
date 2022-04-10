@@ -1,13 +1,13 @@
-#include "Incomes_File.h"
+#include "IncomesFile.h"
 
 /// Method to load encomes of logged user ///
-vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
+vector<Amount> IncomesFile::loadUserIncome(int loggedUserId)
 {
     CMarkup xml;
     Amount amount;
     vector<Amount> incomes;
-    int current_id;
-    int income_id;
+    int currentId;
+    int incomeId;
     ////// TMP STATUS //////////
     bool status;
     ///////////////////////////
@@ -21,19 +21,19 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
             xml.IntoElem();
             /// GET DATA FROM XML ///
             xml.FindElem("USER_ID");
-            current_id = atoi(xml.GetElemContent().c_str());
-            if (loggedUserId == current_id)
+            currentId = atoi(xml.GetElemContent().c_str());
+            if (loggedUserId == currentId)
             {
-                status = amount.setId(current_id);
+                status = amount.setId(currentId);
 
                 xml.FindElem("DATE");
                 status = amount.setDate(atoi(xml.GetElemContent().c_str()));
 
                 xml.FindElem("INCOME_ID");
-                income_id = atoi(xml.GetElemContent().c_str());
-                status = amount.setAmountId(income_id);
-                if (lastIncomeId < income_id)
-                    lastIncomeId = income_id;
+                incomeId = atoi(xml.GetElemContent().c_str());
+                status = amount.setAmountId(incomeId);
+                if (lastIncomeId < incomeId)
+                    lastIncomeId = incomeId;
 
                 xml.FindElem("ITEM");
                 status = amount.setItem(xml.GetElemContent());
@@ -46,9 +46,9 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
             else
             {
                 xml.FindElem("INCOME_ID");
-                income_id = atoi(xml.GetElemContent().c_str());
-                if (lastIncomeId < income_id)
-                    lastIncomeId = income_id;
+                incomeId = atoi(xml.GetElemContent().c_str());
+                if (lastIncomeId < incomeId)
+                    lastIncomeId = incomeId;
             }
             xml.OutOfElem();
             /// EOF: GET DATA FROM XML ///
@@ -59,29 +59,29 @@ vector<Amount> Incomes_File::loadUserIncome(int loggedUserId)
 }
 
 /// Method to write new expenses of logged user ///
-void Incomes_File::writeIncomes(Amount amount, int LOGGED_USER_ID)
+void IncomesFile::writeIncomes(Amount amount, int LOGGED_USER_ID)
 {
-    CMarkup xml_in;
-    xml_in.Load(getFileName());
-    xml_in.ResetPos();
-    if(!xml_in.FindElem("INCOMES"))
+    CMarkup xml;
+    xml.Load(getFileName());
+    xml.ResetPos();
+    if(!xml.FindElem("INCOMES"))
     {
-        xml_in.AddElem("INCOMES");
+        xml.AddElem("INCOMES");
     }
-    xml_in.IntoElem();
-    xml_in.AddElem("INCOME");
-    xml_in.IntoElem();
-    xml_in.AddElem("USER_ID", LOGGED_USER_ID);
-    xml_in.AddElem("DATE", amount.getDate());
-    xml_in.AddElem("INCOME_ID", amount.getAmountId());
-    xml_in.AddElem("ITEM", amount.getItem());
-    xml_in.AddElem("AMOUNT", Minor_Methods::toStringWithPrecision(amount.getAmount()));
+    xml.IntoElem();
+    xml.AddElem("INCOME");
+    xml.IntoElem();
+    xml.AddElem("USER_ID", LOGGED_USER_ID);
+    xml.AddElem("DATE", amount.getDate());
+    xml.AddElem("INCOME_ID", amount.getAmountId());
+    xml.AddElem("ITEM", amount.getItem());
+    xml.AddElem("AMOUNT", MinorMethods::toStringWithPrecision(amount.getAmount()));
     lastIncomeId++;
-    xml_in.Save(getFileName());
+    xml.Save(getFileName());
 }
 
 /// Method to extract Id of the last income ///
-int Incomes_File::getLastIncomeId()
+int IncomesFile::getLastIncomeId()
 {
     return lastIncomeId;
 }

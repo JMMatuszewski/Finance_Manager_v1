@@ -1,7 +1,7 @@
-#include "User_File.h"
+#include "UserFile.h"
 
 /// Method to load accessible users from xml file ///
-vector<User> User_File::loadUsersFromFile()
+vector<User> UserFile::loadUsersFromFile()
 {
     CMarkup xml;
     User user;
@@ -39,7 +39,7 @@ vector<User> User_File::loadUsersFromFile()
 }
 
 /// Method to add new user to file ///
-void User_File::add_UserToFile(User user)
+void UserFile::addUserToFile(User user)
 {
     CMarkup xml;
 
@@ -65,33 +65,24 @@ void User_File::add_UserToFile(User user)
 	xml.Save( getFileName() );
 }
 
-void User_File::editUserPass(int loggedUserId, string newPass)
+void UserFile::editUserPass(int loggedUserId, string newPass)
 {
     CMarkup xml;
-    int current_id;
+    int currentId;
 
     xml.Load(getFileName());
-    //xml.ResetPos();
     if(xml.FindElem("USERS"))
     {
         xml.IntoElem();
         while(xml.FindElem("USER"))
         {
-            //xml.IntoElem();
             xml.FindChildElem("ID");
-            current_id = atoi(xml.GetChildData().c_str());//xml.GetElemContent()
-            if (loggedUserId == current_id)//current_id
+            currentId = atoi(xml.GetChildData().c_str());
+            if (loggedUserId == currentId)
             {
-                //cout << "login correct" << endl;
-
-                //xml.FindElem("LOGIN");
-                //xml.FindPrevElem();
                 xml.ResetChildPos();
-                //xml.RemoveElem();
-                //xml.AddElem( "PASS", newPass);
                 xml.FindChildElem("PASS");
                 xml.SetChildData(newPass);
-                //xml.Save( getFileName() );
                 break;
             }
         }

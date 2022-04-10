@@ -3,17 +3,17 @@
 
 #include <iostream>
 
-#include "User_Manager.h"
-#include "UserFinances_Manager.h"
-#include "Minor_Methods.h"
+#include "UserManager.h"
+#include "UserFinancesManager.h"
+#include "MinorMethods.h"
 
 using namespace std;
 
-class Financial_Manager
+class FinancialManager
 {
     ////////// OBJECTS ////////////
-    User_Manager user_Manager;
-    UserFinances_Manager *userFinances_Manager;
+    UserManager userManager;
+    UserFinancesManager *userFinancesManager;
     ///////////////////////////////
     const string INCOMES_FILENAME;
     const string EXPENSES_FILENAME;
@@ -21,24 +21,24 @@ class Financial_Manager
 
 
 public:
-    Financial_Manager(string USERFILENAME, string incomes_FileName, string expenses_FileName)
-    : user_Manager(USERFILENAME), INCOMES_FILENAME(incomes_FileName), EXPENSES_FILENAME(expenses_FileName)
+    FinancialManager(string USERFILENAME, string incomesFileName, string expensesFileName)
+    : userManager(USERFILENAME), INCOMES_FILENAME(incomesFileName), EXPENSES_FILENAME(expensesFileName)
     {
-        userFinances_Manager = NULL;
+        userFinancesManager = NULL;
     };
-    ~Financial_Manager()
+    ~FinancialManager()
     {
-        delete userFinances_Manager;
-        userFinances_Manager = NULL;
+        delete userFinancesManager;
+        userFinancesManager = NULL;
     };
 
     //////////// MENU ////////////
     char getMainMenuChoice();
     char getFinanceMenuChoice();
     //////////// USER /////////////
-    void user_Login();
-    void show_Users();
-    void user_Register();
+    void userLogin();
+    void showUsers();
+    void userRegister();
     int getLoggedUserId();
     //////////// FINANCES /////////
     void addIncome();
@@ -50,8 +50,8 @@ public:
     void changePass();
 
     /// TMP ///
-    void show_Incomes();
-    void show_Expenses();
+    void showIncomes();
+    void showExpenses();
     //int getLastIncomeId();
     /// TMP ///
 

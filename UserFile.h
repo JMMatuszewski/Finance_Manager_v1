@@ -5,23 +5,19 @@
 #include <vector>
 
 #include "User.h"
-#include "XML_File.h"
+#include "XMLFile.h"
 #include "Markup.h"
 
 using namespace std;
 
-class User_File : public XML_File
+class UserFile : public XMLFile
 {
 
 public:
-    User_File(string userFileName) : XML_File(userFileName){};
+    UserFile(string userFileName) : XMLFile(userFileName){};
     vector<User> loadUsersFromFile();
-    void add_UserToFile(User user);
+    void addUserToFile(User user);
     void editUserPass(int loggedUserId, string newPass);
-
-    //////////////////////////////////////
-    //vector<User> loadUserFinances();
-
 };
 
 #endif

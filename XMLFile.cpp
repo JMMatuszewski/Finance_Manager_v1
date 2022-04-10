@@ -1,8 +1,8 @@
-#include "XML_File.h"
+#include "XMLFile.h"
 
 /// Method to extract file name   ///
 /// given throughout constructor. ///
-string XML_File::getFileName()
+string XMLFile::getFileName()
 {
     return FILE_NAME;
 }

@@ -4,36 +4,35 @@
 
 #include <iostream>
 #include <vector>
-//#include <windows.h>
 
 #include "User.h"
-#include "Minor_Methods.h"
-#include "User_File.h"
+#include "MinorMethods.h"
+#include "UserFile.h"
 
 using namespace std;
 
-class User_Manager
+class UserManager
 {
     int loggedUserId;
-    User_File user_File;
+    UserFile userFile;
     vector <User> users;
     ///////// private methods /////////
-    bool get_NewUser(User *pUser);
-    int get_LastId();
-    bool check_Login(User *pUser);
+    bool getNewUser(User *pUser);
+    int getLastId();
+    bool checkLogin(User *pUser);
     ///////////////////////////////////
 
 public:
-    User_Manager(string userFileName) : user_File(userFileName){
+    UserManager(string userFileName) : userFile(userFileName){
     loggedUserId = 0;
-    users = user_File.loadUsersFromFile();
+    users = userFile.loadUsersFromFile();
     };
-    void user_Login();
-    void show_Users();
-    void user_Register();
+    void userLogin();
+    void showUsers();
+    void userRegister();
     int getLoggedUserId();
     char getFinanceMenuChoice();
-    bool check_IfUserLogged();
+    bool checkIfUserLogged();
     void changePass();
     void userLogout();
 

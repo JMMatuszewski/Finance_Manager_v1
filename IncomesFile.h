@@ -4,26 +4,24 @@
 #include <iostream>
 #include <vector>
 
-#include "Minor_Methods.h"
+#include "MinorMethods.h"
 #include "Amount.h"
-#include "XML_File.h"
+#include "XMLFile.h"
 #include "Markup.h"
 
 using namespace std;
 
-class Incomes_File : public XML_File
+class IncomesFile : public XMLFile
 {
     int lastIncomeId;
 public:
-    Incomes_File(string incomes_FileName) : XML_File(incomes_FileName)
+    IncomesFile(string incomesFileName) : XMLFile(incomesFileName)
     {
         lastIncomeId = 0;
     };
     /// PUBLIC METHODS ///
     vector<Amount> loadUserIncome(int loggedUserId);
     void writeIncomes(Amount amount,int LOGGED_USER_ID);
-
-    //void setLastIncomeId(int newLastIncomeId);
     int getLastIncomeId();
 };
 
