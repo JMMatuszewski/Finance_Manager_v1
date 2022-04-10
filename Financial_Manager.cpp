@@ -11,7 +11,7 @@ char Financial_Manager::getMainMenuChoice()
     cout << "2. Register" << endl;
     cout << "9. End of Work" << endl;
     cout << "---------------------------" << endl;
-    cout << "Choice: ";
+    //cout << "Choice: ";
     choice = Minor_Methods::minor_ReadChar();
 
     return choice;

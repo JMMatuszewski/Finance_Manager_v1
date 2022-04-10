@@ -46,6 +46,8 @@ bool UserFinances_Manager::get_NewIncome(Amount* pIncome)
     cout << "Podaj Kwote:" << endl;
     string strAmount = Minor_Methods::minor_ReadLine();
     replace(strAmount.begin(),strAmount.end(),',','.');
+    if(status = Minor_Methods::checkIfNumber(strAmount)){}
+    else return status;
     if(pIncome -> setAmount(stod(strAmount))){}
     else return status;
 
@@ -137,10 +139,9 @@ bool UserFinances_Manager::get_NewExpense(Amount* pExpense)
 
     cout << "Podaj Kwote:" << endl;
     string strAmount = Minor_Methods::minor_ReadLine();
+    replace(strAmount.begin(),strAmount.end(),',','.');
     if(status = Minor_Methods::checkIfNumber(strAmount)){}
     else return status;
-
-    replace(strAmount.begin(),strAmount.end(),',','.');
     if(pExpense -> setAmount(stod(strAmount))){}
     else return status;
 
@@ -275,6 +276,7 @@ double UserFinances_Manager::calcMonthSum(vector<Amount> vectorName, int startDa
         {
             sum += itr->getAmount();
             cout << "---------------------" << endl;
+            cout << "Date:"; Minor_Methods::printDate(itr->getDate());
             cout << "Item: " << itr->getItem() << endl;
             cout << "Amount: " << itr->getAmount() << endl;
             cout << endl;

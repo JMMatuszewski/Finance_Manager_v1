@@ -12,10 +12,11 @@ string Minor_Methods::minor_ReadLine()
 char Minor_Methods::minor_ReadChar()
 {
     char chrInput = {0};
-    string strInput = "";
+    string strInput;
 
     while (true)
     {
+        cout << "Choice: ";
         getline(cin, strInput);
 
         if (strInput.length() == 1)
@@ -76,7 +77,7 @@ bool Minor_Methods::checkDate(string date)
 
     for (int position = 0; position < date.length(); position++)
     {
-        if ((position == 4) || (position == 7) || (position+1 == date.length())){}
+        if ((position == 4) || (position == 7)){}// || (position+1 == date.length())){}
         else
         {
             mergedDate += date[position];
@@ -92,6 +93,7 @@ bool Minor_Methods::checkDate(string date)
 
     if( !(getDays(extractMonth(intMergedDate), extractYear(intMergedDate)) >= extractDay(intMergedDate)) )
         return false;
+        else { cout << "Date is fine \n";}
 
     if (!(getCurDate() >= atoi(mergedDate.c_str())))
         return false;
@@ -103,8 +105,17 @@ bool Minor_Methods::checkDate(string date)
 /// before converting it to int.      ///
 bool Minor_Methods::checkIfNumber(string& num)
 {
-    string::iterator itr = num.begin();
-    while (itr != num.end() && isdigit(*itr)) ++itr;
+    bool point = false;
+    string::iterator itr;
+    for (itr = num.begin() ; itr != num.end() ; itr++)
+    {
+        if (*itr == '.' && point == false)
+            point = true;
+        else if (*itr != '.' && isdigit(*itr)){}
+        else return false;
+    }
+    //string::iterator itr = num.begin();
+    //while(itr != num.end() && isdigit(*itr)) ++itr;
     return !num.empty() && itr == num.end();
 }
 
@@ -138,7 +149,7 @@ bool Minor_Methods::checkYear(int year)
 /// Method to check if month is correct ///
 bool Minor_Methods::checkMonth(int month)
 {
-    if ( (month >= 0) && (month <= 12) )    /// WAZNE /// ZASTISIWAC "if (expr) return true; return false;! Just write return expr;"
+    if ( (month >= 1) && (month <= 12) )    /// WAZNE /// ZASTISIWAC "if (expr) return true; return false;! Just write return expr;"
         return true;
     else return false;
 }
@@ -151,10 +162,12 @@ int Minor_Methods::getDays(int m, int y)
     {
         if((y%100 == 0 && y%400==0) || (y%100!= 0 && y%4==0))
         {
+            cout << "02 = 29 \n";
             return 29;
         }
         else
         {
+            cout << "02 = 28 \n";
             return 28;
         }
     }

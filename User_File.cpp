@@ -71,25 +71,30 @@ void User_File::editUserPass(int loggedUserId, string newPass)
     int current_id;
 
     xml.Load(getFileName());
-    xml.ResetPos();
+    //xml.ResetPos();
     if(xml.FindElem("USERS"))
     {
         xml.IntoElem();
         while(xml.FindElem("USER"))
         {
-            xml.IntoElem();
-            xml.FindElem("ID");
-            current_id = atoi(xml.GetElemContent().c_str());
-            if (loggedUserId == current_id)
+            //xml.IntoElem();
+            xml.FindChildElem("ID");
+            current_id = atoi(xml.GetChildData().c_str());//xml.GetElemContent()
+            if (loggedUserId == current_id)//current_id
             {
+                //cout << "login correct" << endl;
+
                 //xml.FindElem("LOGIN");
                 //xml.FindPrevElem();
-                //xml.ResetChildPos();
-                xml.RemoveElem();
-                xml.AddElem( "PASS", newPass);
-                xml.Save( getFileName() );
+                xml.ResetChildPos();
+                //xml.RemoveElem();
+                //xml.AddElem( "PASS", newPass);
+                xml.FindChildElem("PASS");
+                xml.SetChildData(newPass);
+                //xml.Save( getFileName() );
                 break;
             }
         }
+        xml.Save( getFileName() );
     }
 }
